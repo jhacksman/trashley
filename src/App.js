@@ -35,6 +35,7 @@ function App() {
 
   const sendControlMessage = useCallback(() => {
     console.log('sendControlMessage function called');
+    console.log(`Current power values - leftPower: ${leftPower}, rightPower: ${rightPower}`);
     if (readyState === ReadyState.OPEN) {
       console.log(`Current state values - leftPower: ${leftPower}, rightPower: ${rightPower}`);
       const message = JSON.stringify({ type: 'control', leftPower, rightPower });
@@ -129,10 +130,7 @@ function App() {
 
   useEffect(() => {
     console.log('Power values changed, triggering sendControlMessage');
-    const timeoutId = setTimeout(() => {
-      sendControlMessage();
-    }, 50); // 50ms delay
-    return () => clearTimeout(timeoutId);
+    sendControlMessage();
   }, [leftPower, rightPower, sendControlMessage]);
 
   useEffect(() => {
