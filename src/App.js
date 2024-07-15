@@ -54,18 +54,12 @@ function App() {
   const handleSliderChange = (value, side) => {
     console.log(`Slider changed: ${side} = ${value}, type: ${typeof value}`);
     if (side === 'left') {
-      setLeftPower(prevPower => {
-        console.log(`Updating left power from ${prevPower} to ${value}`);
-        return value;
-      });
+      setLeftPower(value);
     } else {
-      setRightPower(prevPower => {
-        console.log(`Updating right power from ${prevPower} to ${value}`);
-        return value;
-      });
+      setRightPower(value);
     }
     setControlMethod('sliders');
-    console.log(`Control method set to sliders, leftPower: ${leftPower}, rightPower: ${rightPower}`);
+    console.log(`Control method set to sliders, new ${side} power: ${value}`);
   };
 
   const handleGamepadConnect = (event) => {
@@ -187,7 +181,7 @@ function App() {
                   max="1"
                   step="0.1"
                   value={leftPower}
-                  onChange={(e) => handleSliderChange(parseFloat(e.target.value), 'left')}
+                  onInput={(e) => handleSliderChange(parseFloat(e.target.value), 'left')}
                   style={{ width: '200px', transform: 'rotate(270deg)' }}
                 />
               </div>
@@ -203,7 +197,7 @@ function App() {
                   max="1"
                   step="0.1"
                   value={rightPower}
-                  onChange={(e) => handleSliderChange(parseFloat(e.target.value), 'right')}
+                  onInput={(e) => handleSliderChange(parseFloat(e.target.value), 'right')}
                   style={{ width: '200px', transform: 'rotate(270deg)' }}
                 />
               </div>
