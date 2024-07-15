@@ -36,15 +36,10 @@ function App() {
   const sendControlMessage = useCallback(() => {
     console.log('sendControlMessage function called');
     if (readyState === ReadyState.OPEN) {
-      // Only send message if values are not both zero (assuming zero is the default)
-      if (leftPower !== 0 || rightPower !== 0) {
-        console.log(`Current state values - leftPower: ${leftPower}, rightPower: ${rightPower}`);
-        const message = JSON.stringify({ type: 'control', leftPower, rightPower });
-        console.log('Sending WebSocket message:', message);
-        sendMessage(message);
-      } else {
-        console.log('Skipping send for default values');
-      }
+      console.log(`Current state values - leftPower: ${leftPower}, rightPower: ${rightPower}`);
+      const message = JSON.stringify({ type: 'control', leftPower, rightPower });
+      console.log('Sending WebSocket message:', message);
+      sendMessage(message);
     } else {
       console.log('WebSocket not ready, current state:', readyState);
       // Implement logic to queue message or attempt reconnection
