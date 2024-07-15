@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# WebSocket-based Robot Control System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+This project implements a WebSocket-based robot control system with a React frontend. Key features include:
 
-In the project directory, you can run:
+- WebSocket server for real-time communication
+- React frontend for user interface
+- Gamepad support for intuitive control
+- Gradual stop functionality for safety
 
-### `npm start`
+## Setup Instructions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository:
+   ```
+   git clone https://github.com/jhacksman/trashley.git
+   ```
+2. Navigate to the project directory:
+   ```
+   cd trashley
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Running the Application
 
-### `npm test`
+1. Start the WebSocket server:
+   ```
+   cd server && node index.js
+   ```
+2. Start the frontend development server:
+   ```
+   cd frontend && npm start
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+- Use the sliders in the user interface to control the robot's movement
+- Connect a gamepad for more intuitive control
+- Keyboard controls are also available for basic movement
+- The gradual stop feature ensures safe deceleration when stopping the robot
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deployment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- The frontend is deployed on Netlify: http://sprightly-zabaione-bdd92a.netlify.app
+- To deploy the WebSocket server:
+  1. Set up a server with Node.js installed
+  2. Copy the server files to the deployment environment
+  3. Install dependencies and start the server using `node index.js`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Development
 
-### `npm run eject`
+- The project is hosted on GitHub: https://github.com/jhacksman/trashley
+- To contribute, fork the repository and create a pull request
+- The main branch contains stable code, while feature branches are used for development
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For more detailed information about the project structure and implementation, please refer to the source code and comments within the repository.
