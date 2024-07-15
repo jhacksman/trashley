@@ -172,6 +172,7 @@ function App() {
           <HStack spacing={8}>
             <VStack>
               <Text>Left Wheel</Text>
+              <Text fontWeight="bold">Power: {leftPower.toFixed(2)}</Text>
               <div>
                 <label htmlFor="left-wheel">Left Wheel</label>
                 <input
@@ -188,6 +189,7 @@ function App() {
             </VStack>
             <VStack>
               <Text>Right Wheel</Text>
+              <Text fontWeight="bold">Power: {rightPower.toFixed(2)}</Text>
               <div>
                 <label htmlFor="right-wheel">Right Wheel</label>
                 <input
