@@ -58,12 +58,17 @@ function App() {
   const handleSliderChange = (value, side) => {
     console.log(`Slider changed: ${side} = ${value}`);
     if (side === 'left') {
-      setLeftPower(value);
+      setLeftPower(prevPower => {
+        console.log(`New left power value: ${value}`);
+        return value;
+      });
     } else {
-      setRightPower(value);
+      setRightPower(prevPower => {
+        console.log(`New right power value: ${value}`);
+        return value;
+      });
     }
     setControlMethod('sliders');
-    console.log(`New ${side} power value: ${value}`);
   };
 
   const handleGamepadConnect = (event) => {
@@ -129,7 +134,10 @@ function App() {
 
   useEffect(() => {
     console.log('Power values changed, triggering sendControlMessage');
-    sendControlMessage();
+    const timeoutId = setTimeout(() => {
+      sendControlMessage();
+    }, 50); // 50ms delay
+    return () => clearTimeout(timeoutId);
   }, [leftPower, rightPower, sendControlMessage]);
 
   useEffect(() => {
