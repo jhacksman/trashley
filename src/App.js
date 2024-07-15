@@ -52,19 +52,20 @@ function App() {
   }, [readyState, sendMessage, leftPower, rightPower]);
 
   const handleSliderChange = (value, side) => {
-    console.log(`Slider changed: ${side} = ${value}`);
+    console.log(`Slider changed: ${side} = ${value}, type: ${typeof value}`);
     if (side === 'left') {
       setLeftPower(prevPower => {
-        console.log(`New left power value: ${value}`);
+        console.log(`Updating left power from ${prevPower} to ${value}`);
         return value;
       });
     } else {
       setRightPower(prevPower => {
-        console.log(`New right power value: ${value}`);
+        console.log(`Updating right power from ${prevPower} to ${value}`);
         return value;
       });
     }
     setControlMethod('sliders');
+    console.log(`Control method set to sliders, leftPower: ${leftPower}, rightPower: ${rightPower}`);
   };
 
   const handleGamepadConnect = (event) => {
@@ -134,6 +135,12 @@ function App() {
   }, [leftPower, rightPower, sendControlMessage]);
 
   useEffect(() => {
+    console.log(`Power values updated - leftPower: ${leftPower}, rightPower: ${rightPower}`);
+  }, [leftPower, rightPower]);
+
+  // Temporarily disabled gamepad-related useEffect hook for debugging
+  /*
+  useEffect(() => {
     let animationFrameId;
 
     const handleGamepad = () => {
@@ -161,43 +168,45 @@ function App() {
       cancelAnimationFrame(animationFrameId);
     };
   }, [isGamepadConnected, leftPower, rightPower, applyDeadZone]);
+  */
 
   return (
     <ChakraProvider>
+      {console.log(`Render - leftPower: ${leftPower}, rightPower: ${rightPower}`)}
       <Box minHeight="100vh" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
         <VStack spacing={8}>
           <HStack spacing={8}>
             <VStack>
               <Text>Left Wheel</Text>
-              <Slider
-                aria-label="left-wheel"
-                value={leftPower}
-                onChange={(v) => handleSliderChange(v, 'left')}
-                min={-1}
-                max={1}
-                step={0.1}
-                orientation="vertical"
-                minH="200px"
-              >
-                <SliderTrack />
-                <SliderThumb />
-              </Slider>
+              <div>
+                <label htmlFor="left-wheel">Left Wheel</label>
+                <input
+                  type="range"
+                  id="left-wheel"
+                  min="-1"
+                  max="1"
+                  step="0.1"
+                  value={leftPower}
+                  onChange={(e) => handleSliderChange(parseFloat(e.target.value), 'left')}
+                  style={{ width: '200px', transform: 'rotate(270deg)' }}
+                />
+              </div>
             </VStack>
             <VStack>
               <Text>Right Wheel</Text>
-              <Slider
-                aria-label="right-wheel"
-                value={rightPower}
-                onChange={(v) => handleSliderChange(v, 'right')}
-                min={-1}
-                max={1}
-                step={0.1}
-                orientation="vertical"
-                minH="200px"
-              >
-                <SliderTrack />
-                <SliderThumb />
-              </Slider>
+              <div>
+                <label htmlFor="right-wheel">Right Wheel</label>
+                <input
+                  type="range"
+                  id="right-wheel"
+                  min="-1"
+                  max="1"
+                  step="0.1"
+                  value={rightPower}
+                  onChange={(e) => handleSliderChange(parseFloat(e.target.value), 'right')}
+                  style={{ width: '200px', transform: 'rotate(270deg)' }}
+                />
+              </div>
             </VStack>
           </HStack>
           <Text mt={4}>Current Control: {controlMethod}</Text>
